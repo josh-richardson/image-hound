@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<Accordion fx:id="acdnMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <panes>
+    <TitledPane fx:id="paneHost" animated="false" text="Select Host">
+      <content>
+        <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+                  <ComboBox fx:id="cbxHosts" prefWidth="2000.0" promptText="Select a host" />
+                  <Button fx:id="btnHelp" minWidth="100.0" mnemonicParsing="false" text="Help">
+                     <VBox.margin>
+                        <Insets top="310.0" />
+                     </VBox.margin>
+                  </Button>
+          </children>
+        </VBox>
+      </content>
+    </TitledPane>
+    <TitledPane fx:id="paneOptions" animated="false" disable="true" text="Select Options">
+      <content>
+        <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+            <Label text="Download by:" />
+            <ComboBox fx:id="cbxDownloadMethod" prefWidth="9000.0" />
+            <Label fx:id="lblMethod" text="Method:">
+              <VBox.margin>
+                <Insets top="10.0" />
+              </VBox.margin>
+            </Label>
+            <TextField fx:id="txtSearch" />
+            <Label text="Minimum resolution (e.g. &quot;1280, 720&quot;):">
+              <VBox.margin>
+                <Insets top="10.0" />
+              </VBox.margin>
+            </Label>
+            <TextField fx:id="txtMinResolution" text="0, 0" />
+                  <Label text="Directory to download to:">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="txtDirectory" />
+          </children>
+        </VBox>
+      </content>
+    </TitledPane>
+      <TitledPane fx:id="paneSelectItems" animated="false" disable="true" layoutX="10.0" layoutY="35.0" text="Select Images">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Download Mode:" />
+                  <RadioButton fx:id="rbAllImages" mnemonicParsing="false" selected="true" text="Download all images">
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label minWidth="-Infinity" text="Limit:">
+                           <HBox.margin>
+                              <Insets top="4.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtMaxImages" prefHeight="25.0" prefWidth="2000.0" text="None" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <RadioButton fx:id="rbCertainImages" mnemonicParsing="false" text="Download only the following images:">
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <TableView fx:id="tableImages" disable="true" fixedCellSize="100.0" prefHeight="5000.0">
+                    <columns>
+                      <TableColumn fx:id="columnImage1" prefWidth="61.0" text="Image" />
+                      <TableColumn fx:id="columnImage2" prefWidth="72.0" text="URL" />
+                    </columns>
+                     <VBox.margin>
+                        <Insets left="40.0" top="5.0" />
+                     </VBox.margin>
+                  </TableView>
+                  <HBox prefHeight="18.0" prefWidth="578.0">
+                     <VBox.margin>
+                        <Insets left="40.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label fx:id="lblSelectedImages" minWidth="200.0" text="0 images selected">
+                           <HBox.margin>
+                              <Insets top="7.0" />
+                           </HBox.margin>
+                        </Label>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="5000.0">
+                           <children>
+                              <Button fx:id="btnLoadMoreImages" disable="true" layoutX="275.0" layoutY="13.0" minWidth="100.0" mnemonicParsing="false" prefHeight="25.0" text="Load More">
+                                 <HBox.margin>
+                                    <Insets top="3.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+    <TitledPane fx:id="paneDownloading" animated="false" disable="true" text="Downloading">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <TextArea fx:id="txtLog" prefHeight="827.0" prefWidth="618.0" />
+               </children>
+            </VBox>
+         </content>
+    </TitledPane>
+  </panes>
+</Accordion>

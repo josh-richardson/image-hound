@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ImageHound:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ImageHound_jar</output-path>
+    <root id="archive" name="ImageHound.jar">
+      <element id="module-output" name="ImageHound" />
+    </root>
+  </artifact>
+</component>
