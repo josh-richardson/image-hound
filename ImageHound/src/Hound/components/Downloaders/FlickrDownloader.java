@@ -55,12 +55,20 @@ public class FlickrDownloader extends AbstractDownloader {
                     }
 
                     JSONObject parent = new JSONObject(results);
-                    JSONObject photos = parent.getJSONObject("photos");
+                    JSONObject photos;
+                    if (parent.has("photos")) {
+                        photos = parent.getJSONObject("photos");
+                    } else {
+                        photos = parent.getJSONObject("photoset");
+                    }
                     JSONArray photosArray = photos.getJSONArray("photo");
                     for (int i = 0; i < photosArray.length(); i++) {
                         JSONObject photo = photosArray.getJSONObject(i);
                         if ((properties.size() < limit && limit != -1 || limit == -1) && photo.has(property) && photo.has("url_o")) {
                             properties.add(new MutablePair<>(photo.getString("url_o"), photo.getString(property)));
+                        } else if (photo.has(property) && !photo.has("url_o")) {
+                            String id = photo.getString("id");
+                            System.out.println(id);
                         } else if (properties.size() >= limit && limit != -1) {
                             return properties;
                         }
@@ -99,7 +107,6 @@ public class FlickrDownloader extends AbstractDownloader {
         String apiKey = webRequest("https://www.flickr.com/search/?text=hello");
         int index = apiKey.indexOf("site_key = ") + 12;
         apiKey = apiKey.substring(index, index + 32);
-        System.out.println(apiKey);
         return apiKey;
     }
 
@@ -108,7 +115,7 @@ public class FlickrDownloader extends AbstractDownloader {
     public List getDownloadModes() {
         //// TODO: Un-bodge the download method to support getting info for individual photos, as photosets don't support url_o
         return Arrays.asList(new ViewableMutablePair<>("Search", "https://api.flickr.com/services/rest?sort=relevance&parse_tags=1&content_type=7&extras=url_o%2Curl_s&per_page=100&page={PAGE}&lang=en-US&text={SEARCH}&dimension_search_mode=min&height={MINHEIGHT}&width={MINWIDTH}&method=flickr.photos.search&api_key={APIKEY}&format=json&hermesClient=1&nojsoncallback=1"),
-//                new ViewableMutablePair<>("Album", "https://api.flickr.com/services/rest?extras=url_o%2Curl_s&per_page=100&page={PAGE}&get_user_info=1&photoset_id={SEARCH}method=flickr.photosets.getPhotos&api_key={APIKEY}&format=json&hermesClient=1&nojsoncallback=1"),
+                new ViewableMutablePair<>("Album", "https://api.flickr.com/services/rest?extras=url_o%2Curl_s&per_page=50&page={PAGE}&get_user_info=1&primary_photo_extras=url_c%2C%20url_h%2C%20url_k%2C%20url_l%2C%20url_m%2C%20url_n%2C%20url_o%2C%20url_q%2C%20url_s&photoset_id={SEARCH}&method=flickr.photosets.getPhotos&api_key={APIKEY}&format=json&hermesClient=1&nojsoncallback=1"),
                 new ViewableMutablePair<>("User", "https://api.flickr.com/services/rest?per_page=100&page={PAGE}&view_as=use_pref&sort=use_pref&&extras=url_o%2Curl_s&user_id={SEARCH}&method=flickr.people.getPhotos&api_key={APIKEY}&format=json&hermesClient=1&nojsoncallback=1&dimension_search_mode=min&height={MINHEIGHT}&width={MINWIDTH}"));
     }
 }
