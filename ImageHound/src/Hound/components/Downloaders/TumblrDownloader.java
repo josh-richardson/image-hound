@@ -32,7 +32,7 @@ public class TumblrDownloader extends AbstractDownloader {
 
     @Override
     public List getDownloadModes() {
-        return Collections.singletonList("Blog name");
+        return Collections.singletonList("Blog URL");
     }
 
 }
