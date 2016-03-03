@@ -47,7 +47,6 @@ public class FlickrDownloader extends AbstractDownloader {
                 updateLog("Indexing search page " + j + " of " + requestDetails.getLeft());
                 try {
                     String results = webRequest(searchURL.replace("{SEARCH}", search.replace(" ", "%20")).replace("{APIKEY}", apiKey).replace("{MINWIDTH}", String.valueOf(minWidth)).replace("{MINHEIGHT}", String.valueOf(minHeight)).replace("{PAGE}", String.valueOf(j)));
-                    System.out.println(results);
                     while (results.contains("Invalid API Key") && results.contains("\"stat\":\"fail\"")) {
                         System.out.println("API Key Failed");
                         apiKey = getApiKey();
@@ -65,10 +64,9 @@ public class FlickrDownloader extends AbstractDownloader {
                     for (int i = 0; i < photosArray.length(); i++) {
                         JSONObject photo = photosArray.getJSONObject(i);
                         if ((properties.size() < limit && limit != -1 || limit == -1) && photo.has(property) && photo.has("url_o")) {
-                            properties.add(new MutablePair<>(photo.getString("url_o"), photo.getString(property)));
+                            properties.add(new MutablePair<>(photo.getString(property), photo.getString("url_o")));
                         } else if (photo.has(property) && !photo.has("url_o")) {
                             String id = photo.getString("id");
-                            System.out.println(id);
                         } else if (properties.size() >= limit && limit != -1) {
                             return properties;
                         }
@@ -86,10 +84,9 @@ public class FlickrDownloader extends AbstractDownloader {
 
 
 
-    public MutablePair<Integer, Integer> getRequestDetails(String searchURL, String search, String apiKey, int minWidth, int minHeight) throws IOException {
+    private MutablePair<Integer, Integer> getRequestDetails(String searchURL, String search, String apiKey, int minWidth, int minHeight) throws IOException {
         updateLog("Getting query details");
         String results = webRequest(searchURL.replace("{SEARCH}", search.replace(" ", "%20")).replace("{APIKEY}", apiKey).replace("{MINWIDTH}", String.valueOf(minWidth)).replace("{MINHEIGHT}", String.valueOf(minHeight)).replace("{PAGE}", "1"));
-        System.out.println(results);
         JSONObject parent = new JSONObject(results);
         JSONObject photos;
         if (parent.has("photos")) {
@@ -109,6 +106,7 @@ public class FlickrDownloader extends AbstractDownloader {
         apiKey = apiKey.substring(index, index + 32);
         return apiKey;
     }
+
 
 
     @Override

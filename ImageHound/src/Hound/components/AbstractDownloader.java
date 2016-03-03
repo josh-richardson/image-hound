@@ -76,7 +76,6 @@ public abstract class AbstractDownloader {
         maxProgress = urls.size();
         File directory = new File(filePath);
         if ((!directory.exists() && directory.mkdirs()) || directory.exists()) {
-            System.out.println(urls);
             urls.parallelStream().forEach(relevantURL -> {
                 try {
                     File file = new File(filePath + System.getProperty("file.separator") + relevantURL.substring(relevantURL.lastIndexOf("/") + 1, relevantURL.length()));

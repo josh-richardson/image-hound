@@ -10,13 +10,13 @@ public class ImageDetailsTableItem {
     private final SimpleStringProperty url;
     private final Image image;
 
-    public ImageDetailsTableItem(String fName, Image image) {
+    public ImageDetailsTableItem(String url, Image image) {
         this.image = image;
-        this.url = new SimpleStringProperty(fName);
+        this.url = new SimpleStringProperty(url);
+
     }
 
     public String getUrl() {
-        System.out.println(url.get());
         return url.get();
     }
 

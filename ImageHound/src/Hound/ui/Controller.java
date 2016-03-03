@@ -2,6 +2,8 @@ package Hound.ui;
 
 import Hound.components.AbstractDownloader;
 import Hound.components.Downloaders.FlickrDownloader;
+import Hound.components.Downloaders.FourChanDownloader;
+import Hound.components.Downloaders.TumblrDownloader;
 import Hound.components.ImageDetailsTableItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,7 +70,7 @@ public class Controller implements Initializable {
     public TextArea txtLog;
 
     final ObservableList<ImageDetailsTableItem> data = FXCollections.observableArrayList();
-    int currentPage = 1;
+    int currentPage = 0;
     AbstractDownloader currentDownloader = null;
     MutablePair<String, String> downloadMethod =  null;
 
@@ -100,8 +102,6 @@ public class Controller implements Initializable {
                 cbxDownloadMethod.getSelectionModel().select(0);
             } else if (newValue == paneDownloading) {
                 if (rbCertainImages.isSelected()) {
-                    System.out.println("Data size: " + data.size());
-                    System.out.println(tableImages.getSelectionModel().getSelectedCells().size());
                     ArrayList<String> relevantURLs = (ArrayList<String>) tableImages.getSelectionModel().getSelectedCells().stream().map(e -> data.get(((TablePosition) e).getRow()).getUrl()).collect(Collectors.toList());
                     new Thread(() -> {
                         currentDownloader.saveUrlArray(txtDirectory.getText(), relevantURLs);
@@ -124,7 +124,7 @@ public class Controller implements Initializable {
             if (newValue && tableImages.getItems().size() == 0) {
                 new Thread(() -> {
                     data.add(new ImageDetailsTableItem("Loading...", null));
-                    currentDownloader.getSmallImages(downloadMethod.getRight(), currentPage, Integer.valueOf(txtMinResolution.getText().split(", ")[0].replace(", ", "")), Integer.valueOf(txtMinResolution.getText().split(", ")[1].replace(", ", "")), txtSearch.getText()).forEach(e -> data.add(new ImageDetailsTableItem(e.getLeft(), new Image(e.getRight(), true))));
+                    currentDownloader.getSmallImages(downloadMethod.getRight(), currentPage, Integer.valueOf(txtMinResolution.getText().split(", ")[0].replace(", ", "")), Integer.valueOf(txtMinResolution.getText().split(", ")[1].replace(", ", "")), txtSearch.getText()).forEach(e -> data.add(new ImageDetailsTableItem(e.getRight(), new Image(e.getLeft(), true))));
                     data.remove(0);
                 }).start();
             }
@@ -175,8 +175,10 @@ public class Controller implements Initializable {
         });
 
         cbxDownloadMethod.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            downloadMethod = (MutablePair)newValue;
-            lblMethod.setText(downloadMethod.getLeft() + ":");
+           if (newValue != null) {
+               downloadMethod = (MutablePair)newValue;
+               lblMethod.setText(downloadMethod.getLeft() + ":");
+           }
         });
 
 
@@ -202,7 +204,7 @@ public class Controller implements Initializable {
         paneHost.setExpanded(true);
         acdnMain.setExpandedPane(paneHost);
 
-        cbxHosts.getItems().addAll(Arrays.asList(new FlickrDownloader(this)));  //, new FourChanDownloader(this), new TumblrDownloader(this)));
+        cbxHosts.getItems().addAll(Arrays.asList(new FlickrDownloader(this), new TumblrDownloader(this), new FourChanDownloader(this)));  //, new FourChanDownloader(this), new TumblrDownloader(this)));
         txtDirectory.setText(FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath());
 
         final ToggleGroup downloadModes = new ToggleGroup();
