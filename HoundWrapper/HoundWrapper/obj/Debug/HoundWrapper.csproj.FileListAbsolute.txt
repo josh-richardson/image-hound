@@ -1,0 +1,8 @@
+D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Debug\HoundWrapper.csprojResolveAssemblyReference.cache
+D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Debug\HoundWrapper.frmMain.resources
+D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Debug\HoundWrapper.csproj.GenerateResource.Cache
+D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Debug\ImageHound.Properties.Resources.resources
+D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\bin\Debug\ImageHound.exe
+D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\bin\Debug\ImageHound.pdb
+D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Debug\ImageHound.exe
+D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Debug\ImageHound.pdb

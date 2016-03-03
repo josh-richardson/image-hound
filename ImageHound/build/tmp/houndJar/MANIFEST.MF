@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: ImageHound
+Implementation-Version: 1.0-SNAPSHOT
+Main-Class: hound.Main
+

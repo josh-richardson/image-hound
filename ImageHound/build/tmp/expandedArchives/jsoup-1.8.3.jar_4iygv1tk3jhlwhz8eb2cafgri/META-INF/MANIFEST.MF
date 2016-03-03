@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: 1.8.0_25 (Oracle Corporation)
+Built-By: jhy
+Build-Jdk: 1.8.0_25
+Bundle-Description: jsoup HTML parser
+Bundle-License: http://jsoup.org/license
+Bundle-SymbolicName: org.jsoup
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1438547532805
+Bundle-DocURL: http://jsoup.org/
+Bundle-Vendor: Jonathan Hedley
+Import-Package: javax.net.ssl,javax.xml.parsers,javax.xml.transform,ja
+ vax.xml.transform.dom,javax.xml.transform.stream,org.jsoup;version="1
+ .8",org.jsoup.examples;version="1.8",org.jsoup.helper;version="1.8",o
+ rg.jsoup.nodes;version="1.8",org.jsoup.parser;version="1.8",org.jsoup
+ .safety;version="1.8",org.jsoup.select;version="1.8",org.w3c.dom
+Tool: Bnd-0.0.357
+Originally-Created-By: 1.8.0_25 (Oracle Corporation)
+Export-Package: org.jsoup;uses:="org.jsoup.parser,org.jsoup.nodes,org.
+ jsoup.safety,org.jsoup.helper";version="1.8.3",org.jsoup.examples;use
+ s:="org.jsoup.nodes,org.jsoup.helper,org.jsoup.select,org.jsoup";vers
+ ion="1.8.3",org.jsoup.helper;uses:="org.jsoup.nodes,org.jsoup.parser,
+ org.jsoup.select,org.jsoup,javax.net.ssl,org.w3c.dom,javax.xml.transf
+ orm.stream,javax.xml.transform.dom,javax.xml.parsers,javax.xml.transf
+ orm";version="1.8.3",org.jsoup.nodes;uses:="org.jsoup.helper,org.jsou
+ p.parser,org.jsoup.select,org.jsoup";version="1.8.3",org.jsoup.parser
+ ;uses:="org.jsoup.helper,org.jsoup.nodes,org.jsoup.select";version="1
+ .8.3",org.jsoup.safety;uses:="org.jsoup.nodes,org.jsoup.select,org.js
+ oup.parser,org.jsoup.helper";version="1.8.3",org.jsoup.select;uses:="
+ org.jsoup.nodes,org.jsoup.helper,org.jsoup.parser";version="1.8.3"
+Bundle-Version: 1.8.3
+Bundle-Name: jsoup
+
