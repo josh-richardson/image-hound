@@ -5,3 +5,4 @@ D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrap
 D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Release\HoundWrapper.csproj.GenerateResource.Cache
 D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Release\ImageHound.exe
 D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Release\ImageHound.pdb
+D:\Users\Joshua\Dropbox\Projects\Java\IntellIJ\ImageHound\HoundWrapper\HoundWrapper\obj\Release\HoundWrapper.csprojResolveAssemblyReference.cache

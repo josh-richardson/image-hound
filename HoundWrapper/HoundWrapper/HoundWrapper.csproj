@@ -79,11 +79,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\imageHound-all-1.0-SNAPSHOT.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Icons8-Windows-8-Astrology-Year-Of-Dog.ico" />
     <Content Include="Resources\Icons8-Windows-8-Astrology-Year-Of-Dog.ico" />
+    <None Include="Resources\imageHound-all-1.0-SNAPSHOT.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
