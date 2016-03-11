@@ -26,11 +26,13 @@ public class TumblrDownloader extends AbstractDownloader {
 
     @Override
     public ArrayList<MutablePair<String, String>> getSmallImages(String searchURL, int pageToStart, int minWidth, int minHeight, String search) {
+        search = fixUrl(search);
         return enumerateImages(minHeight, 50, pageToStart, minWidth, search);
     }
 
 
     public ArrayList<MutablePair<String, String>> enumerateImages(int minHeight, int limit, int pageToStart, int minWidth, String search) {
+        search = fixUrl(search);
         ArrayList<MutablePair<String, String>> properties = new ArrayList<>();
         try {
             int numImages = getRequestDetails(search);
@@ -104,5 +106,13 @@ public class TumblrDownloader extends AbstractDownloader {
         return Collections.singletonList(new ViewableMutablePair<>("Blog URL", ""));
     }
 
+    private String fixUrl(String url) {
+        url = url.replace("http://", "");
+        if (!url.startsWith("www.")) {
+            return "www." + url;
+        } else {
+            return url;
+        }
+    }
 
 }
