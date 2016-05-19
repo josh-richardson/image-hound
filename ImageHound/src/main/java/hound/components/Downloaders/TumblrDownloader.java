@@ -108,11 +108,7 @@ public class TumblrDownloader extends AbstractDownloader {
 
     private String fixUrl(String url) {
         url = url.replace("http://", "");
-        if (!url.startsWith("www.")) {
-            return "www." + url;
-        } else {
-            return url;
-        }
+        return !url.startsWith("www.") ? "www." + url : url;
     }
 
 }

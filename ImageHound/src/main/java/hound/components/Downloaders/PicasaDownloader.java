@@ -11,6 +11,7 @@ import java.util.List;
  * Created by joshuarichardson on 12/02/2016.
  */
 public class PicasaDownloader extends AbstractDownloader {
+
     public PicasaDownloader(Controller controller) {
         super("Picasa", controller);
     }

@@ -12,14 +12,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
- * Created by Joshua on 06/02/2016.
+ * Created by joshuarichardson on 06/05/2016.
  */
-public class FourChanDownloader extends AbstractDownloader {
-
-    public FourChanDownloader(Controller controller) {
-        super("4chan", controller);
+public class ImgurDownloader extends AbstractDownloader {
+    public ImgurDownloader(Controller controller) {
+        super("Imgur", controller);
     }
 
     @Override
@@ -35,14 +33,13 @@ public class FourChanDownloader extends AbstractDownloader {
         return true;
     }
 
-
     public ArrayList<MutablePair<String, String>> enumerateImages(boolean small, int minHeight, int limit, int pageToStart, int minWidth, String search) {
         ArrayList<MutablePair<String, String>> properties = new ArrayList<>();
         try {
             Document doc = Jsoup.connect(search).get();
-            doc.getElementsByTag("a").stream().filter(e -> e.attributes().get("href").startsWith("//i.4cdn.org/") && !e.attributes().get("href").endsWith("s") && e.attributes().hasKey("class")).forEach(e -> {
+            doc.getElementsByTag("a").stream().filter(e -> e.attributes().hasKey("class") && e.attributes().hasKey("href") && e.attributes().get("class").equals("zoom") && e.attributes().get("href").startsWith("//i.imgur.com/")).forEach(e -> {
                 String url = "http:" + e.attributes().get("href");
-                String smallUrl = (FilenameUtils.removeExtension(url) + "s." + FilenameUtils.getExtension(url)).replace(".gif", ".jpg").replace(".webm", ".jpg");
+                String smallUrl = (FilenameUtils.removeExtension(url) + "g." + FilenameUtils.getExtension(url));
                 if (properties.size() <= limit || limit == -1) {
                     properties.add(new MutablePair<>((small ? smallUrl : url), url));
                 }
@@ -57,8 +54,6 @@ public class FourChanDownloader extends AbstractDownloader {
 
     @Override
     public List getDownloadModes() {
-        return Collections.singletonList(new ViewableMutablePair<>("Thread URL", ""));
+        return Collections.singletonList(new ViewableMutablePair<>("Album URL", ""));
     }
-
-
 }
