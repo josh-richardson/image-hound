@@ -39,7 +39,8 @@ public class FourChanDownloader extends AbstractDownloader {
     public ArrayList<MutablePair<String, String>> enumerateImages(boolean small, int minHeight, int limit, int pageToStart, int minWidth, String search) {
         ArrayList<MutablePair<String, String>> properties = new ArrayList<>();
         try {
-            Document doc = Jsoup.connect(search).get();
+
+            Document doc = Jsoup.parse(webRequest(search));
             doc.getElementsByTag("a").stream().filter(e -> e.attributes().get("href").startsWith("//i.4cdn.org/") && !e.attributes().get("href").endsWith("s") && e.attributes().hasKey("class")).forEach(e -> {
                 String url = "http:" + e.attributes().get("href");
                 String smallUrl = (FilenameUtils.removeExtension(url) + "s." + FilenameUtils.getExtension(url)).replace(".gif", ".jpg").replace(".webm", ".jpg");
