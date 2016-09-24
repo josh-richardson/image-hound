@@ -86,9 +86,11 @@ public class FlickrDownloader extends AbstractDownloader {
 
     private MutablePair<Integer, Integer> getRequestDetails(String searchURL, String search, String apiKey, int minWidth, int minHeight) throws IOException {
         updateLog("Getting query details");
+        System.out.println(searchURL.replace("{SEARCH}", search.replace(" ", "%20")).replace("{APIKEY}", apiKey).replace("{MINWIDTH}", String.valueOf(minWidth)).replace("{MINHEIGHT}", String.valueOf(minHeight)).replace("{PAGE}", "1"));
         String results = webRequest(searchURL.replace("{SEARCH}", search.replace(" ", "%20")).replace("{APIKEY}", apiKey).replace("{MINWIDTH}", String.valueOf(minWidth)).replace("{MINHEIGHT}", String.valueOf(minHeight)).replace("{PAGE}", "1"));
         JSONObject parent = new JSONObject(results);
         JSONObject photos;
+        System.out.println(parent.toString());
         if (parent.has("photos")) {
             photos = parent.getJSONObject("photos");
         } else {

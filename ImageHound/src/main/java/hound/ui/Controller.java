@@ -1,10 +1,7 @@
 package hound.ui;
 
 import hound.components.AbstractDownloader;
-import hound.components.Downloaders.FlickrDownloader;
-import hound.components.Downloaders.FourChanDownloader;
-import hound.components.Downloaders.ImgurDownloader;
-import hound.components.Downloaders.TumblrDownloader;
+import hound.components.Downloaders.*;
 import hound.components.ImageDetailsTableItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -205,7 +202,7 @@ public class Controller implements Initializable {
         paneHost.setExpanded(true);
         acdnMain.setExpandedPane(paneHost);
 
-        cbxHosts.getItems().addAll(Arrays.asList(new FlickrDownloader(this), new TumblrDownloader(this), new FourChanDownloader(this), new ImgurDownloader(this)));  //, new FourChanDownloader(this), new TumblrDownloader(this)));
+        cbxHosts.getItems().addAll(Arrays.asList(new FlickrDownloader(this), new TumblrDownloader(this), new FourChanDownloader(this), new ImgurDownloader(this), new SlimgurDownloader(this)));  //, new FourChanDownloader(this), new TumblrDownloader(this)));
         txtDirectory.setText(FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath());
 
         final ToggleGroup downloadModes = new ToggleGroup();

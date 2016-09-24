@@ -37,6 +37,7 @@ public class TumblrDownloader extends AbstractDownloader {
         try {
             int numImages = getRequestDetails(search);
             for(int i = pageToStart * 50; i < numImages; i += 50) {
+                updateLog("Indexing page " + i / 50 + " of " + numImages / 50);
                 String page = webRequest("http://" + search + "/api/read?type=photo&num=50&start=" + i);
                 Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(page.getBytes("UTF-8")));
                 getImageDetails(doc.getElementsByTagName("post"), minWidth, minHeight).forEach(e -> {
